@@ -136,6 +136,8 @@
 }
 html {
   overflow-x: hidden;
+  font-family: "hv-medium";
+  /* font-weight: 500; */
 }
 /* * {
   border: 1px solid red;
