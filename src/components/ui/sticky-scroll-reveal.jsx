@@ -35,26 +35,13 @@ export const StickyScroll = ({ content, contentClassName }) => {
     "#000000", // black
     "#000000", // neutral-900
   ];
-  const linearGradients = [
-    "linear-gradient(to bottom right, #06b6d4, #10b981)", // cyan-500 to emerald-500
-    "linear-gradient(to bottom right, #ec4899, #6366f1)", // pink-500 to indigo-500
-    "linear-gradient(to bottom right, #f97316, #eab308)", // orange-500 to yellow-500
-  ];
-
-  const [backgroundGradient, setBackgroundGradient] = useState(
-    linearGradients[0]
-  );
-
-  useEffect(() => {
-    setBackgroundGradient(linearGradients[activeCard % linearGradients.length]);
-  }, [activeCard]);
 
   return (
     <motion.div
       animate={{
         backgroundColor: backgroundColors[activeCard % backgroundColors.length],
       }}
-      className="relative flex h-[30rem] justify-center space-x-10 overflow-y-auto rounded-md p-10 scrollbar-hide"
+      className="relative flex flex-col h-auto lg:h-[80vh] lg:flex-row justify-start overflow-y-auto rounded-md scrollbar-hide"
       style={{
         scrollbarWidth: "none",
         msOverflowStyle: "none",
@@ -63,10 +50,12 @@ export const StickyScroll = ({ content, contentClassName }) => {
         },
       }}
       ref={ref}>
-      <div className="relative flex items-start px-4 div">
-        <div className="max-w-2xl">
+      <div className="relative flex items-start w-full lg:w-1/2 p-4 lg:p-8">
+        <div className="w-full">
           {content.map((item, index) => (
-            <div key={item.title + index} className="my-20">
+            <div
+              key={item.title + index}
+              className="lg:min-h-[80vh] flex flex-col py-8 lg:py-6 lg:justify-center">
               <motion.h2
                 initial={{
                   opacity: 0,
@@ -74,7 +63,7 @@ export const StickyScroll = ({ content, contentClassName }) => {
                 animate={{
                   opacity: activeCard === index ? 1 : 0.3,
                 }}
-                className="text-2xl font-bold text-slate-100">
+                className="text-3xl sm:text-2xl lg:text-2xl font-bold text-slate-100 lg:opacity-[inherit] opacity-100">
                 {item.title}
               </motion.h2>
               <motion.p
@@ -84,21 +73,44 @@ export const StickyScroll = ({ content, contentClassName }) => {
                 animate={{
                   opacity: activeCard === index ? 1 : 0.3,
                 }}
-                className="max-w-sm mt-10 text-kg text-slate-300">
+                className="mt-3 lg:mt-4 text-sm lg:text-base text-slate-300 max-w-[90%] lg:max-w-lg lg:opacity-[inherit] opacity-100">
                 {item.description}
               </motion.p>
+              {/* Show image below content on mobile */}
+              <div className="mt-6 block lg:hidden w-full">
+                <div className="w-full h-[300px] rounded-lg overflow-hidden">
+                  {React.isValidElement(item.content)
+                    ? React.cloneElement(item.content, {
+                        className: cn(
+                          "w-full h-full object-contain",
+                          item.content.props.className
+                        ),
+                      })
+                    : item.content}
+                </div>
+              </div>
             </div>
           ))}
-          <div className="h-40" />
         </div>
       </div>
+      {/* Only show sticky container on desktop */}
       <div
-        style={{ background: backgroundGradient }}
         className={cn(
-          "sticky top-10 hidden w-[500px] overflow-hidden rounded-md bg-white lg:block",
+          "hidden lg:block sticky top-0 w-full lg:w-1/2 h-[35vh] lg:h-[80vh] overflow-hidden rounded-lg",
           contentClassName
         )}>
-        {content[activeCard].content ?? null}
+        <div className="relative w-full h-full">
+          <div className="absolute inset-0 flex items-center justify-center p-3 lg:p-6">
+            {React.isValidElement(content[activeCard].content)
+              ? React.cloneElement(content[activeCard].content, {
+                  className: cn(
+                    "w-full h-full object-contain max-w-[90%] max-h-[90%]",
+                    content[activeCard].content.props.className
+                  ),
+                })
+              : content[activeCard].content}
+          </div>
+        </div>
       </div>
     </motion.div>
   );

@@ -14,15 +14,15 @@ function Footer() {
 
   return (
     <footer className="w-full pb-10 bg-black">
-      <div className="w-full px-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Separator line with padding */}
-        <div className="px-[10%] mb-24">
+        <div className="mb-24">
           <div className="border-t border-neutral-800" />
         </div>
 
-        <div className="grid grid-cols-12 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-4">
           {/* Newsletter Section */}
-          <div className="col-span-4">
+          <div className="md:col-span-4">
             <h3 className="mb-4 text-xl font-medium text-white">
               Join Our Newsletter
             </h3>
@@ -164,27 +164,29 @@ function Footer() {
       <div
         className="relative w-full mt-24 overflow-hidden group"
         onMouseMove={handleMouseMove}>
-        <img
-          src="https://cdn.prod.website-files.com/6776795150d75a7996a767bd/6776795150d75a7996a7680f_alphatradeai-text-logo.svg"
-          alt="ALPHATRADE"
-          className="w-full opacity-10 [filter:invert(60%)] transition-all duration-700"
-          draggable={false}
-        />
-        <div
-          className="absolute inset-0 transition-opacity duration-700 opacity-0 group-hover:opacity-100"
-          style={{
-            background: `radial-gradient(circle 150px at ${mousePosition.x}px ${mousePosition.y}px, rgba(255,255,255,0.15), transparent)`,
-            maskImage: `url(${encodeURI(
-              "https://cdn.prod.website-files.com/6776795150d75a7996a767bd/6776795150d75a7996a7680f_alphatradeai-text-logo.svg"
-            )})`,
-            WebkitMaskImage: `url(${encodeURI(
-              "https://cdn.prod.website-files.com/6776795150d75a7996a767bd/6776795150d75a7996a7680f_alphatradeai-text-logo.svg"
-            )})`,
-            maskSize: "100% 100%",
-            WebkitMaskSize: "100% 100%",
-            mixBlendMode: "plus-lighter",
-          }}
-        />
+        <div className="mx-auto max-w-7xl">
+          <img
+            src="https://cdn.prod.website-files.com/6776795150d75a7996a767bd/6776795150d75a7996a7680f_alphatradeai-text-logo.svg"
+            alt="ALPHATRADE"
+            className="w-full opacity-10 [filter:invert(60%)] transition-all duration-700"
+            draggable={false}
+          />
+          <div
+            className="absolute inset-0 transition-opacity duration-700 opacity-0 group-hover:opacity-100"
+            style={{
+              background: `radial-gradient(circle 150px at ${mousePosition.x}px ${mousePosition.y}px, rgba(255,255,255,0.15), transparent)`,
+              maskImage: `url(${encodeURI(
+                "https://cdn.prod.website-files.com/6776795150d75a7996a767bd/6776795150d75a7996a7680f_alphatradeai-text-logo.svg"
+              )})`,
+              WebkitMaskImage: `url(${encodeURI(
+                "https://cdn.prod.website-files.com/6776795150d75a7996a767bd/6776795150d75a7996a7680f_alphatradeai-text-logo.svg"
+              )})`,
+              maskSize: "100% 100%",
+              WebkitMaskSize: "100% 100%",
+              mixBlendMode: "plus-lighter",
+            }}
+          />
+        </div>
       </div>
     </footer>
   );

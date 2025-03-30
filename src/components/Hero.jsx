@@ -23,7 +23,7 @@ function Hero() {
   return (
     <>
       <WavyBackground className="flex flex-col items-center justify-center w-screen min-h-screen mx-auto overflow-x-hidden max-w-screen">
-        <p className="text-2xl text-center text-white md:text-4xl lg:text-7xl font-hv-black">
+        <p className="text-4xl text-center text-white md:text-4xl lg:text-7xl font-hv-black">
           <Cover>Supercharge</Cover> Your <br /> Investment Approach
         </p>
         <p className="mt-4 text-base text-center text-white md:text-lg font-hv-medium">

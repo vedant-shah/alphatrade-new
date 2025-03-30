@@ -79,7 +79,7 @@ const features = [
 
 function Services() {
   return (
-    <div className="relative z-20 py-20 max-w-6xl mx-auto px-4">
+    <div className="relative z-20 py-20 max-w-6xl mx-auto px-4 my-16">
       <div className="text-center mb-16">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-4">
           A Trading Journal Streamlined For You
